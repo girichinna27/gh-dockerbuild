@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_and_push:
-    runs-on: alpine-latest  # Using a lightweight Alpine Linux image instead of Ubuntu
+    runs-on: ubuntu-latest  # Using a lightweight Alpine Linux image instead of Ubuntu
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
