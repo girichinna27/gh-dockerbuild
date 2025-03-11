@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_and_push:
-    runs-on: ubuntu-latest  # Using a lightweight Alpine Linux image instead of Ubuntu
+    runs-on: alpine-latest  # Using a lightweight Alpine Linux image instead of Ubuntu
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -32,15 +32,6 @@ jobs:
           push: true
           tags: docker.io/rajsomesetty/app-frontend:frontend-${{ github.run_id }}
 
-      - name: Build and Push Backend Image
-        uses: docker/build-push-action@v2
-        with:
-          context: ./backend
-          file: ./backend/Dockerfile
-          push: true
-          tags: docker.io/rajsomesetty/app-backend:backend-${{ github.run_id }}
-
       - name: Verify Pushed Images
         run: |
           docker pull docker.io/rajsomesetty/app-frontend:frontend-${{ github.run_id }}
-          docker pull docker.io/rajsomesetty/app-backend:backend-${{ github.run_id }}
